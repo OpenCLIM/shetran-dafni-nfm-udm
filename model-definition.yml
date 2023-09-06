@@ -39,6 +39,37 @@ spec:
         description: The name or identifier of the catchment (e.g. '1001'). This should be a section of the name in the catchment input files (e.g. '1001_DEM.asc').
         required: false
 
+      - name: CLIMATE_SCENARIO
+        title: Climate RCM
+        type: string
+        description: The UKCP18 climate scenario / RCM to use for driving data for the simulation.
+        required: true
+        options:
+          - name: RCM 01
+            title: 01
+          - name: RCM 04
+            title: 04
+          - name: RCM 05
+            title: 05
+          - name: RCM 06
+            title: 06
+          - name: RCM 07
+            title: 07
+          - name: RCM 08
+            title: 08
+          - name: RCM 09
+            title: 09
+          - name: RCM 10
+            title: 10
+          - name: RCM 11
+            title: 11
+          - name: RCM 12
+            title: 12
+          - name: RCM 13
+            title: 13
+          - name: RCM 15
+            title: 15
+
       - name: NFM_SCENARIO
         title: NFM Scenario
         type: string
