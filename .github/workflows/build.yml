@@ -10,3 +10,6 @@ jobs:
 
       - name: build image
         run: docker build -t shetran-dafni-nfm-udm .
+
+      #- name: test test_run
+      #  run: docker run -v $PWD/data:/data --env PYTHONUNBUFFERED=1 --env NAME="Total Depth" --env RAINFALL_MODE=total_depth --env SIZE=0.2 --env DURATION=1 --env POST_EVENT_DURATION=0 --env TOTAL_DEPTH=40 --env X=258722 --env Y=665028 --env OPEN_BOUNDARIES=False --env PERMEABLE_AREAS=impermeable --env ROOF_STORAGE=0.3 --env OUTPUT_INTERVAL=600 --name citycat-dafni-total-depth citycat-dafni
