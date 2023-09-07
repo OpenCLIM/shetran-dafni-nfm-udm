@@ -43,6 +43,7 @@ spec:
         title: Climate RCM
         type: string
         description: The UKCP18 climate scenario / RCM to use for driving data for the simulation.
+        default: 01
         required: true
         options:
           - name: RCM 01
