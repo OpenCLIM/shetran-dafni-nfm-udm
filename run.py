@@ -19,11 +19,11 @@ outputs = os.path.join(data_path, 'outputs')
 run_path = os.path.join(outputs, 'run_folder')
 
 # If there are existing outputs then remove these: # Uncomment these once UDM is workin
-# if os.path.exists(outputs):
-#     shutil.rmtree(outputs)
+if os.path.exists(outputs):
+    shutil.rmtree(outputs)
 # Create a new (empty) output folder:
-# os.mkdir(outputs)
-# os.mkdir(run_path)
+os.mkdir(outputs)
+os.mkdir(run_path)
 
 # Get a list of the inputs and crop them to the catchment of interest:
 catchment_name = os.getenv('CATCHMENT_NAME')  # , '23016'
