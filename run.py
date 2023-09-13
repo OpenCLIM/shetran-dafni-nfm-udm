@@ -62,23 +62,24 @@ try:
         f_new = f.replace('max_', '').replace('balanced_', '')
         shutil.copy(inputs + '/' + f, run_path + '/' + f_new)
 
-#     # --- Copy desired UDM inputs from the list:
-#
-#     # Create a parameter for selecting the no/correct UDM:
-#     udm_scenario = os.getenv('UDM_SCENARIO')
-#
-#     # Set the names of the desired UDM files:
-#     if udm_scenario == 'Baseline':
-#         udm_file = f"{catchment_name}_LandCover_UDM_2017.asc"
-#     else:
-#         udm_file = f"{catchment_name}_LandCover_UDM_GB_LandCover_{udm_scenario}.asc"
-#
-#     logger(log_file, f'CHECK - UDM file exists: {os.path.exists(inputs + "/" + udm_file)}')
-#     logger(log_file, f'CHECK - run_folder exists: {os.path.exists(run_path)}')
-#
-#     # Copy the UDM file into the run folder:
-#     shutil.copy(inputs + '/' + udm_file, f"{run_path}/{catchment_name}_LandCover_UDM.asc")
-#
+    # --- Copy desired UDM inputs from the list:
+
+    # Create a parameter for selecting the no/correct UDM:
+    udm_scenario = os.getenv('UDM_SCENARIO')
+
+    # Set the names of the desired UDM files:
+    if udm_scenario == 'Baseline':
+        udm_file = f"{catchment_name}_LandCover_UDM_2017.asc"
+    else:
+        udm_file = f"{catchment_name}_LandCover_UDM_GB_LandCover_{udm_scenario}.asc"
+
+    logger(log_file, f'UDM SCENARIO: {udm_scenario}')
+    logger(log_file, f'CHECK - UDM file exists: {os.path.exists(inputs + "/" + udm_file)}')
+    logger(log_file, f'CHECK - run_folder exists: {os.path.exists(run_path)}')
+
+    # Copy the UDM file into the run folder:
+    shutil.copy(inputs + '/' + udm_file, f"{run_path}/{catchment_name}_LandCover_UDM.asc")
+
 #     # --- Crop the inputs to only include the climate data for the desired RCM:
 #     climate_scenario = os.getenv('CLIMATE_SCENARIO')
 #     with ZipFile(f'{inputs}/{catchment_name}_climate_files_{climate_scenario}.zip', 'r') as zip_ref:
