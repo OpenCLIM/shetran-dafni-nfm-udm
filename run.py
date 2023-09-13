@@ -37,29 +37,31 @@ log_file = os.path.join(outputs, 'logfile.txt')
 logger(log_file, 'LOG FILE', write_mode='w')
 
 try:
-    logger(log_file, 'test', write_mode='w')
-#     # Get a list of the inputs and crop them to the catchment of interest:
-#     catchment_name = os.getenv('CATCHMENT_NAME')  # , '23016'
-#     catchment_files = [f for f in os.listdir(inputs) if catchment_name in f]
-#
-#     # --- Copy desired NFM inputs from the list:
-#
-#     # Create a parameter for selecting the no/correct NFM:
-#     nfm_scenario = os.getenv('NFM_SCENARIO')
-#
-#     # Get the names of the NFM files we're interested in:
-#     if nfm_scenario == 'max':
-#         nfm_files = [f for f in catchment_files if 'NFM_max' in f]
-#     elif nfm_scenario == 'balanced':
-#         nfm_files = [f for f in catchment_files if 'NFM_balanced' in f]
-#     else:
-#         nfm_files = []
-#
-#     # Rename the NFM files to remove the max/balanced and move it into the catchment folder:
-#     for f in nfm_files:
-#         f_new = f.replace('max_', '').replace('balanced_', '')
-#         shutil.copy(inputs + '/' + f, run_path + '/' + f_new)
-#
+    # Get a list of the inputs and crop them to the catchment of interest:
+    catchment_name = os.getenv('CATCHMENT_NAME')
+    catchment_files = [f for f in os.listdir(inputs) if catchment_name in f]
+
+    logger(log_file, f'CATCHMENT: {catchment_name}')
+
+    # --- Copy desired NFM inputs from the list:
+
+    # Create a parameter for selecting the no/correct NFM:
+    nfm_scenario = os.getenv('NFM_SCENARIO')
+
+    # Get the names of the NFM files we're interested in:
+    if nfm_scenario == 'max':
+        nfm_files = [f for f in catchment_files if 'NFM_max' in f]
+    elif nfm_scenario == 'balanced':
+        nfm_files = [f for f in catchment_files if 'NFM_balanced' in f]
+    else:
+        nfm_files = []
+    logger(log_file, f'NFM DATA: {nfm_files}')
+
+    # Rename the NFM files to remove the max/balanced and move it into the catchment folder:
+    for f in nfm_files:
+        f_new = f.replace('max_', '').replace('balanced_', '')
+        shutil.copy(inputs + '/' + f, run_path + '/' + f_new)
+
 #     # --- Copy desired UDM inputs from the list:
 #
 #     # Create a parameter for selecting the no/correct UDM:
