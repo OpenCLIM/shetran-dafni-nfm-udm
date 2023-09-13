@@ -74,11 +74,15 @@ try:
         udm_file = f"{catchment_name}_LandCover_UDM_GB_LandCover_{udm_scenario}.asc"
 
     logger(log_file, f'UDM SCENARIO: {udm_scenario}')
-    logger(log_file, f'CHECK - UDM file exists: {os.path.exists(inputs + "/" + udm_file)}')
+    logger(log_file, f'CHECK - UDM file name: {inputs + "/" + udm_file}')
+    logger(log_file, f'CHECK - UDM file exists: {os.path.exists(inputs+"/"+udm_file)}')
     logger(log_file, f'CHECK - run_folder exists: {os.path.exists(run_path)}')
 
     # Copy the UDM file into the run folder:
-    shutil.copy(inputs + '/' + udm_file, f"{run_path}/{catchment_name}_LandCover_UDM.asc")
+    try:
+        shutil.copy(f'{inputs}/{udm_file}', f"{run_path}/{catchment_name}_LandCover_UDM.asc")
+    except Exception as E:
+        logger(log_file, E)
 
     # --- Crop the inputs to only include the climate data for the desired RCM:
     climate_scenario = os.getenv('CLIMATE_SCENARIO')
