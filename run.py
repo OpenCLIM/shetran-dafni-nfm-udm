@@ -12,7 +12,7 @@ from zipfile import ZipFile, ZIP_DEFLATED
 # Create a function that writes log files:
 def logger(file_path, text, write_mode='a'):
     with open(file_path, write_mode) as log:
-        log.write(text + "\n")
+        log.write(str(text) + "\n")
 
 # Get the path to the input dataset:
 data_path = os.getenv('DATA_PATH', '/data')
@@ -38,7 +38,7 @@ logger(log_file, 'LOG FILE', write_mode='w')
 
 try:
     # Get a list of the inputs and crop them to the catchment of interest:
-    catchment_name = os.getenv('CATCHMENT_NAME')
+    catchment_name = str(os.getenv('CATCHMENT_NAME'))
     catchment_files = [f for f in os.listdir(inputs) if catchment_name in f]
 
     logger(log_file, f'CATCHMENT: {catchment_name}')
@@ -80,8 +80,8 @@ try:
     logger(log_file, f'CHECK - new UDM file: {run_path}/{catchment_name}_LandCover_UDM.asc')
 
     # Copy the UDM file into the run folder:
-    # shutil.copy(f'{inputs}/{udm_file}', f"{run_path}/{catchment_name}_LandCover_UDM.asc")
-    # logger(log_file, f'STATUS - UDM Copy completed.')
+    shutil.copy(f'{inputs}/{udm_file}', f"{run_path}/{catchment_name}_LandCover_UDM.asc")
+    logger(log_file, f'STATUS - UDM Copy completed.')
 
     # --- Crop the inputs to only include the climate data for the desired RCM:
     climate_scenario = os.getenv('CLIMATE_SCENARIO')
